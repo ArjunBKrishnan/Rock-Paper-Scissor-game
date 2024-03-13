@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>game</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="title">Rock paper Scissors</div>
+        <div class="game">
+            <div class="hand-card"><button class="hand" onclick="run('rock')">rock</button></div>
+            <div class="hand-card"><button class="hand" onclick="run('paper')">paper</button></div>
+            <div class="hand-card"><button class="hand" onclick="run('scissor')">scissor</button></div>
+        </div>
+        <div class="stat-bar">
+            <div class="cpu-choice">Hi there!</div>
+            <div class="stats">wins:0  |  losses:0  |  tie:0</div>
+            <div class="winner">New Game</div>
+            <button class="reset" onclick="reset()">Reset</button>
+        </div>
+        <script src="./script.js" async defer></script>
+    </body>
+</html>
