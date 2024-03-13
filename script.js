@@ -1,4 +1,5 @@
 function generateCpuChoice(){
+    console.log("logging .....generateCpuChoice");
     const randomValue = Math.random();
     cpuChoice = '';
     if(randomValue<=.3){
@@ -19,33 +20,18 @@ cpuwins = 0;
 tie = 0;
 
 function run(userChoice){
+    console.log("logging .....run");
     /*try a matrix later using arrays*/
 
     const cpuChoice = generateCpuChoice();
-    winner='';
+    
+
     console.log("user choice ",userChoice);
     console.log("cpu choice ",cpuChoice);
-    if(cpuChoice===userChoice){
-        winner = 'tie';
-    }
-    else if(cpuChoice === 'rock' && userChoice === 'paper'){
-        winner = 'user';
-    }
-    else if(cpuChoice === 'rock' && userChoice === 'scissor'){
-        winner = 'cpu';
-    }else if(cpuChoice === 'paper' && userChoice === 'rock'){
-        winner = 'cpu';
-    }else if(cpuChoice === 'paper' && userChoice === 'scissor'){
-        winner = 'user';
-    }else if(cpuChoice === 'scissor' && userChoice === 'rock'){
-        winner = 'user';
-    }else if(cpuChoice === 'scissor' && userChoice === 'paper'){
-        winner = 'cpu';
-    }
+    winner=decideWinner(userChoice,cpuChoice);
+
     console.log(" winner is ",winner);
     element = document.body.querySelector(".winner");
-    console.log(element.innerHTML);
-
 
     if(winner === 'tie'){
         tie++;
@@ -60,18 +46,47 @@ function run(userChoice){
         element.innerHTML = "winner is User!"
     }
     setStats();
+    
 }
 
 function setStats(){
+    console.log("logging .....setStats");
     element = document.body.querySelector(".stats");
     element.innerHTML = `wins : ${userwins}  |  losses : ${cpuwins}  |  tie : ${tie}`;
 }
 
 function reset(){
+    console.log("logging .....reset");
     userwins = 0;
     cpuwins = 0;
     tie = 0;
     setStats();
     document.body.querySelector(".winner").innerHTML = "New Game";
     document.querySelector(".cpu-choice").innerHTML = "Play Again";
+}
+
+function decideWinner(userChoice,cpuChoice){
+    console.log("logging .....decideWinner");
+    /*x axis is cpu
+    y axis is user
+    rock =0
+    paper=1
+    scissor=2
+    */
+
+    let matrix = [
+        ['tie','cpu','user'],
+        ['user','tie','cpu'],
+        ['cpu','user','tie']
+    ];
+    
+    userChoice = userChoice==='rock'? 0: (userChoice==='paper'?1:2);
+    cpuChoice = cpuChoice==='rock'? 0: (cpuChoice==='paper'?1:2);
+
+    console.log(userChoice);
+    console.log(cpuChoice);
+
+    winner = matrix[userChoice][cpuChoice];
+    console.log('from matrix: winner is ',winner);
+    return winner;
 }
